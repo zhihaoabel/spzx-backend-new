@@ -2,12 +2,18 @@ package com.abel.spzxmanager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.abel.spzxmanager.service.SysUserService;
 import com.abel.spzxmodel.dto.system.LoginDto;
 import com.abel.spzxmodel.vo.common.Result;
 import com.abel.spzxmodel.vo.system.LoginVo;
+import com.abel.spzxmodel.vo.system.UserInfoVo;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -36,4 +42,12 @@ public class IndexController {
         }
         return Result.success(login);
     }
+
+    @GetMapping("/userinfo")
+    public Result<UserInfoVo> getUserInfo(@RequestParam("token") @NonNull String token) {
+        UserInfoVo userInfo = sysUserService.getUserInfo(token);
+        
+        return Result.success(userInfo);
+    }
+    
 }

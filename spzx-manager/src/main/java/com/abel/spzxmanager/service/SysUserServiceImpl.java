@@ -12,6 +12,7 @@ import com.abel.spzxmanager.mapper.SysUserMapper;
 import com.abel.spzxmodel.dto.system.LoginDto;
 import com.abel.spzxmodel.entity.system.SysUser;
 import com.abel.spzxmodel.vo.system.LoginVo;
+import com.abel.spzxmodel.vo.system.UserInfoVo;
 import com.alibaba.fastjson2.JSON;
 
 @Service
@@ -48,6 +49,12 @@ public class SysUserServiceImpl implements SysUserService {
         loginVo.setRefreshToken("");
 
         return loginVo;
+    }
+
+    @Override
+    public UserInfoVo getUserInfo(String token) {
+        String userJson = redisTemplate.opsForValue().get("login:token:" + token);
+        return JSON.parseObject(userJson, UserInfoVo.class);
     }
 
 }
