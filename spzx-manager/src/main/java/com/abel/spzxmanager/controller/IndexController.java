@@ -2,10 +2,7 @@ package com.abel.spzxmanager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.abel.spzxmanager.service.SysUserService;
 import com.abel.spzxmodel.dto.system.LoginDto;
@@ -15,7 +12,8 @@ import com.abel.spzxmodel.vo.system.LoginVo;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
-@RestController("/admin/system/index")
+@RestController
+@RequestMapping("/admin/system/index")
 @Slf4j
 public class IndexController {
 

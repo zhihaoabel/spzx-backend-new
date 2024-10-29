@@ -9,5 +9,5 @@ public class SpzxManagerApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpzxManagerApplication.class, args);
     }
-    
+
 }
