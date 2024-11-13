@@ -1,0 +1,19 @@
+server:
+  port: 15000
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:12000/spzx?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: Wzh@123..
+    
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# mybatis的配置
+mybatis:
+  config-location: classpath:/mybatis-config.xml
+  mapper-locations: classpath:/mapper/*/*.xml
