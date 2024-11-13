@@ -3,9 +3,29 @@
   <component name="StacktraceSettings">
     <option name="folders">
       <set>
-        <option value="$PROJECT_DIR$/spzx-common/src/main/java" />
-        <option value="$PROJECT_DIR$/spzx-common/src/main/resources" />
-        <option value="$PROJECT_DIR$/spzx-common/src/test/java" />
+        <option value="$PROJECT_DIR$/spzx-common/common-service/src/main/java" />
+        <option value="$PROJECT_DIR$/spzx-common/common-service/src/main/resources" />
+        <option value="$PROJECT_DIR$/spzx-common/common-service/src/test/java" />
+        <option value="$PROJECT_DIR$/spzx-common/common-util/src/main/java" />
+        <option value="$PROJECT_DIR$/spzx-common/common-util/src/main/resources" />
+        <option value="$PROJECT_DIR$/spzx-common/common-util/src/test/java" />
+        <option value="$PROJECT_DIR$/spzx-manager/src/main/java" />
+        <option value="$PROJECT_DIR$/spzx-manager/src/main/resources" />
+        <option value="$PROJECT_DIR$/spzx-manager/src/test/java" />
+        <option value="$PROJECT_DIR$/spzx-model/src/main/java" />
+        <option value="$PROJECT_DIR$/spzx-model/src/main/resources" />
+        <option value="$PROJECT_DIR$/spzx-model/src/test/java" />
+        <option value="$PROJECT_DIR$/spzx-model/target/generated-sources/annotations" />
+        <option value="$PROJECT_DIR$/spzx-model/target/generated-test-sources/test-annotations" />
+      </set>
+    </option>
+    <option name="packages">
+      <set>
+        <option value="com.abel.common" />
+        <option value="com.abel.commonservice" />
+        <option value="com.abel.manager" />
+        <option value="com.abel.model" />
+        <option value="com.abel.spzxmanager" />
       </set>
     </option>
   </component>

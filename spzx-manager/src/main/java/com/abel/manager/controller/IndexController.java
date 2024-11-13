@@ -1,5 +1,7 @@
-package com.abel.spzxmanager.controller;
+package com.abel.manager.controller;
 
+import com.abel.common.service.log.Logs;
+import com.abel.manager.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abel.commonservice.aspect.log.Logs;
-import com.abel.spzxmanager.service.SysUserService;
+
 import com.abel.model.dto.system.LoginDto;
-import com.abel.model.vo.common.Result;
+import com.abel.common.service.response.Result;
 import com.abel.model.vo.system.LoginVo;
 import com.abel.model.vo.system.UserInfoVo;
 

@@ -1,7 +1,7 @@
-package com.abel.model.system;
+package com.abel.model.entity.system;
 
 
-import com.abel.model.system.base.BaseEntity;
+import com.abel.model.entity.system.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

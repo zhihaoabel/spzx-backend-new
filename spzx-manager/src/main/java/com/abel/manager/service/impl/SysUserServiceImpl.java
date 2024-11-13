@@ -1,18 +1,17 @@
-package com.abel.spzxmanager.service.impl;
+package com.abel.manager.service.impl;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-
-import com.abel.spzxmanager.service.SysUserService;
+import com.abel.common.util.AssertUtil;
+import com.abel.manager.mapper.SysUserMapper;
+import com.abel.manager.service.SysUserService;
+import com.abel.model.entity.system.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import com.abel.common.utils2.AssertUtil;
-import com.abel.spzxmanager.mapper.SysUserMapper;
 import com.abel.model.dto.system.LoginDto;
-import com.abel.model.entity.system.SysUser;
 import com.abel.model.vo.system.LoginVo;
 import com.abel.model.vo.system.UserInfoVo;
 import com.alibaba.fastjson2.JSON;

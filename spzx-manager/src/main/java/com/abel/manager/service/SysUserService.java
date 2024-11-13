@@ -1,4 +1,4 @@
-package com.abel.spzxmanager.service;
+package com.abel.manager.service;
 
 import com.abel.model.dto.system.LoginDto;
 import com.abel.model.vo.system.LoginVo;

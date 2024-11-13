@@ -1,4 +1,4 @@
-package com.abel.model.vo.common;
+package com.abel.common.service.response;
 
 import lombok.Data;
 

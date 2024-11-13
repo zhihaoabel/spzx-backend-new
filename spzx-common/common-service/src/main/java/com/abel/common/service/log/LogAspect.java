@@ -1,8 +1,8 @@
-package com.abel.commonservice.aspect.log;
+package com.abel.common.service.log;
 
-import com.abel.commonservice.utils.IpUtils;
 
-import com.abel.commonservice.utils.JsonUtils;
+import com.abel.common.service.utils.IpUtils;
+import com.abel.common.service.utils.JsonUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

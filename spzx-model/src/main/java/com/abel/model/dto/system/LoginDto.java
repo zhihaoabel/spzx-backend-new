@@ -1,5 +1,6 @@
 package com.abel.model.dto.system;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +9,7 @@ import lombok.Data;
 @Data
 public class LoginDto implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 893969648L;
 
     @NotBlank(message = "用户名不能为空")

@@ -1,5 +1,6 @@
 package com.abel.model.vo.system;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,6 +9,7 @@ import lombok.Data;
 @Data
 public class UserInfoVo implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 436083375L;
 
     private Long id;

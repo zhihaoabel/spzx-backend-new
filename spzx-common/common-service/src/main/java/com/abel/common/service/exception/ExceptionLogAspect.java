@@ -1,4 +1,4 @@
-package com.abel.commonservice.aspect.exception;
+package com.abel.common.service.exception;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

@@ -1,4 +1,4 @@
-package com.abel.common.utils;
+package com.abel.common.util;
 
 import java.util.function.Supplier;
 

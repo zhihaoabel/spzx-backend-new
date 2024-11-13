@@ -1,4 +1,4 @@
-package com.abel.commonservice.aspect.log;
+package com.abel.common.service.log;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

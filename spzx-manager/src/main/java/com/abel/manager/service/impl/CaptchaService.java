@@ -1,4 +1,4 @@
-package com.abel.spzxmanager.service.impl;
+package com.abel.manager.service.impl;
 
 import java.util.concurrent.TimeUnit;
 

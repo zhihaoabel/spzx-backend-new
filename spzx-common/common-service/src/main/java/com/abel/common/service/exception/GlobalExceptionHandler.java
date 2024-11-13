@@ -1,7 +1,8 @@
-package com.abel.commonservice.exception;
+package com.abel.common.service.exception;
 
-import com.abel.commonservice.utils.ErrorMessageUtils;
-import com.abel.model.vo.common.Result;
+
+import com.abel.common.service.utils.ErrorMessageUtils;
+import com.abel.common.service.response.Result;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

@@ -1,4 +1,4 @@
-package com.abel.commonservice.utils;
+package com.abel.common.service.utils;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

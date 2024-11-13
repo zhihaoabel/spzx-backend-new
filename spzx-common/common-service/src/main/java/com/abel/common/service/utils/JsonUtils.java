@@ -1,4 +1,4 @@
-package com.abel.commonservice.utils;
+package com.abel.common.service.utils;
 
 import java.util.Map;
 import java.util.Set;

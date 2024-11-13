@@ -1,4 +1,4 @@
-package com.abel.spzxmanager.config;
+package com.abel.manager.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

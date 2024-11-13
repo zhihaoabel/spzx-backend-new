@@ -1,4 +1,4 @@
-package com.abel.model.system.base;
+package com.abel.model.entity.system.base;
 
 import java.io.Serial;
 import java.io.Serializable;
