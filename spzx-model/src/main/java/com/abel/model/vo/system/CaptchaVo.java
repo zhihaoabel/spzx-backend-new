@@ -20,6 +20,6 @@ public class CaptchaVo implements Serializable {
     /**
      * 验证码base64
      */
-    private String base64;
+    private String image;
 
 }

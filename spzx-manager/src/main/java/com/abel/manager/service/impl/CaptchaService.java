@@ -58,7 +58,7 @@ public class CaptchaService {
      * 验证验证码
      */
     public boolean validateCaptcha(CaptchaDto captchaDto) {
-        if (StrUtil.hasBlank(captchaDto.getKey(), captchaDto.getCode())) {
+        if (StrUtil.hasBlank(captchaDto.getKey(), captchaDto.getCaptcha())) {
             return false;
         }
 
@@ -75,6 +75,6 @@ public class CaptchaService {
         }
 
         // 验证码比对（忽略大小写）
-        return StrUtil.equalsIgnoreCase(captchaDto.getCode(), correctCode);
+        return StrUtil.equalsIgnoreCase(captchaDto.getCaptcha(), correctCode);
     }
 }

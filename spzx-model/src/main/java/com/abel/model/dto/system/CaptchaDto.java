@@ -22,7 +22,7 @@ public class CaptchaDto implements Serializable {
     /**
      * 验证码图片中的文本
      */
-    @NotBlank(message = "验证码文本不能为空")
-    private String code;
+    @NotBlank(message = "验证码不能为空")
+    private String captcha;
 
 }

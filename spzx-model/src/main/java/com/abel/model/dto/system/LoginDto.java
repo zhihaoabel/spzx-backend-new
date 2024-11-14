@@ -22,6 +22,6 @@ public class LoginDto implements Serializable {
     private String captcha;
 
     @NotBlank(message = "验证码标识不能为空")
-    private String uuid;
+    private String key;
 
 }
