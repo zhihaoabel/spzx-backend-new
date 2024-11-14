@@ -6,6 +6,8 @@ import java.io.StringWriter;
 import java.sql.SQLException;
 import java.util.Map;
 
+import org.springframework.web.servlet.resource.NoResourceFoundException;
+
 public class ErrorMessageUtils {
     
     // 错误消息映射
@@ -13,7 +15,8 @@ public class ErrorMessageUtils {
         NullPointerException.class, "系统处理时遇到空值",
         IllegalArgumentException.class, "参数不合法",
         IOException.class, "IO操作异常",
-        SQLException.class, "数据库操作异常"
+        SQLException.class, "数据库操作异常",
+        NoResourceFoundException.class, "资源不存在"
 
         // 可以添加更多映射
     );

@@ -1,4 +1,4 @@
-package com.abel.common.service.response;
+package com.abel.model.common;
 
 import lombok.Data;
 

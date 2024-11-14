@@ -9,8 +9,8 @@ public interface SysUserService {
     /**
      * 根据用户名和密码登录
      *
-     * @param loginDto
-     * @return
+     * @param loginDto 登录信息
+     * @return 登录结果
      */
     LoginVo login(LoginDto loginDto);
 

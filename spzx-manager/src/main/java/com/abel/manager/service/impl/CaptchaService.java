@@ -3,10 +3,12 @@ package com.abel.manager.service.impl;
 import java.util.concurrent.TimeUnit;
 
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import com.abel.model.dto.system.CaptchaDto;
 import com.abel.model.vo.system.CaptchaVo;
 
 import cn.hutool.captcha.CaptchaUtil;
@@ -49,19 +51,19 @@ public class CaptchaService {
         log.info("生成验证码, uuid: {}, code: {}", uuid, code);
 
         // 返回验证码信息（不包含验证码文本）
-        return new CaptchaVo(uuid, imageBase64);
+        return new CaptchaVo(uuid, "data:image/png;base64," + imageBase64);
     }
 
     /**
      * 验证验证码
      */
-    public boolean validateCaptcha(String uuid, String code) {
-        if (StrUtil.hasBlank(uuid, code)) {
+    public boolean validateCaptcha(CaptchaDto captchaDto) {
+        if (StrUtil.hasBlank(captchaDto.getKey(), captchaDto.getCode())) {
             return false;
         }
 
         // 从Redis获取验证码
-        String key = CAPTCHA_PREFIX + uuid;
+        String key = CAPTCHA_PREFIX + captchaDto.getKey();
         String correctCode = redisTemplate.opsForValue().get(key);
 
         // 验证后立即删除验证码
@@ -73,6 +75,6 @@ public class CaptchaService {
         }
 
         // 验证码比对（忽略大小写）
-        return StrUtil.equalsIgnoreCase(code, correctCode);
+        return StrUtil.equalsIgnoreCase(captchaDto.getCode(), correctCode);
     }
 }

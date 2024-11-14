@@ -2,6 +2,8 @@ package com.abel.manager.controller;
 
 import com.abel.common.service.log.Logs;
 import com.abel.manager.service.SysUserService;
+import com.abel.manager.service.impl.CaptchaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.abel.model.dto.system.LoginDto;
-import com.abel.common.service.response.Result;
+import com.abel.model.common.Result;
+import com.abel.model.dto.system.CaptchaDto;
+import com.abel.model.vo.system.CaptchaVo;
 import com.abel.model.vo.system.LoginVo;
 import com.abel.model.vo.system.UserInfoVo;
 
@@ -26,6 +29,9 @@ public class IndexController {
 
     @Autowired
     private SysUserService sysUserService;
+
+    @Autowired
+    private CaptchaService captchaService;
 
     // 健康检查
     @GetMapping("/health")
@@ -51,6 +57,20 @@ public class IndexController {
         UserInfoVo userInfo = sysUserService.getUserInfo(token);
 
         return Result.success(userInfo);
+    }
+
+    @Logs(value = "生成验证码", printParams = false)
+    @GetMapping("/captcha")
+    public Result<CaptchaVo> getCaptcha() {
+        CaptchaVo captcha = captchaService.generateCaptcha();
+        return Result.success(captcha);
+    }
+
+    @Logs(value = "验证验证码", printParams = true)
+    @PostMapping("/validate-captcha")
+    public Result<Boolean> validateCaptcha(@RequestBody @NonNull CaptchaDto captchaDto) {
+        boolean isValid = captchaService.validateCaptcha(captchaDto);
+        return Result.success(isValid);
     }
 
 }

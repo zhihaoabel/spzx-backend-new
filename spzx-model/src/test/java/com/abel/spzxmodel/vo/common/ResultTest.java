@@ -1,5 +1,6 @@
 package com.abel.spzxmodel.vo.common;
 
+import com.abel.model.common.Result;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
