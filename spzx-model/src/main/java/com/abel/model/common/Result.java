@@ -123,7 +123,7 @@ public class Result<T> {
      * @param resultCodeEnum 响应码枚举
      * @return 响应结果
      */
-    public static <T> Result<T> buildWithResultCodeEnum(T data, ResultCodeEnum resultCodeEnum) {
+    public static <T> Result<T> build(T data, ResultCodeEnum resultCodeEnum) {
         Result<T> result = new Result<>();
         result.setCode(resultCodeEnum.getCode());
         result.setMessage(resultCodeEnum.getMessage());

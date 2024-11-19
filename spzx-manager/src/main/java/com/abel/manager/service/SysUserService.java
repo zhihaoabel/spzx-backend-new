@@ -16,4 +16,6 @@ public interface SysUserService {
 
     UserInfoVo getUserInfo(String token);
 
+    public void logout(String token);
+
 }

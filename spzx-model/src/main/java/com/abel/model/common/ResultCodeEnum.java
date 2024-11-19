@@ -7,7 +7,8 @@ public enum ResultCodeEnum {
 
     SUCCESS(20000, "成功"),
     FAIL(50000, "失败"),
-    RESOURCE_NOT_FOUND(50001, "资源不存在");
+    RESOURCE_NOT_FOUND(50001, "资源不存在"),
+    NOT_LOGIN(50002, "用户未登录");
 
     private final Integer code;
     private final String message;

@@ -3,18 +3,17 @@ package com.abel.manager.service.impl;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import com.abel.common.util.AssertUtil;
-import com.abel.manager.mapper.SysUserMapper;
-import com.abel.manager.service.SysUserService;
-import com.abel.model.entity.system.SysUser;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import com.abel.common.util.AssertUtil;
+import com.abel.manager.mapper.SysUserMapper;
+import com.abel.manager.service.SysUserService;
 import com.abel.model.dto.system.CaptchaDto;
 import com.abel.model.dto.system.LoginDto;
+import com.abel.model.entity.system.SysUser;
 import com.abel.model.vo.system.LoginVo;
 import com.abel.model.vo.system.UserInfoVo;
 import com.alibaba.fastjson2.JSON;
@@ -66,11 +65,17 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public UserInfoVo getUserInfo(String token) {
-        String userJson = redisTemplate.opsForValue().get("login:token:" + token);
-        AssertUtil.notEmpty(userJson, () -> "用户未登录");
-        UserInfoVo userInfoVo = JSON.parseObject(userJson, UserInfoVo.class);
+        String sysUserJson = redisTemplate.opsForValue().get("login:token:" + token);
+        AssertUtil.notEmpty(sysUserJson, () -> "用户未登录");
+        // 缓存里存放的是SysUser对象，返回的是UserInfoVo对象
+        UserInfoVo userInfoVo = JSON.parseObject(sysUserJson, UserInfoVo.class);
         AssertUtil.notNull(userInfoVo, () -> "用户信息解析失败");
         return userInfoVo;
+    }
+
+    @Override
+    public void logout(String token) {
+        redisTemplate.delete("login:token:" + token);
     }
 
 }

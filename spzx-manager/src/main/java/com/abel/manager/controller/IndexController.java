@@ -1,9 +1,5 @@
 package com.abel.manager.controller;
 
-import com.abel.common.service.log.Logs;
-import com.abel.manager.service.SysUserService;
-import com.abel.manager.service.impl.CaptchaService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +9,14 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abel.model.dto.system.LoginDto;
+import com.abel.common.service.log.Logs;
+import com.abel.manager.service.SysUserService;
+import com.abel.manager.service.impl.CaptchaService;
 import com.abel.model.common.Result;
+import com.abel.model.common.ResultCodeEnum;
 import com.abel.model.dto.system.CaptchaDto;
+import com.abel.model.dto.system.LoginDto;
+import com.abel.model.utils.ContextUtil;
 import com.abel.model.vo.system.CaptchaVo;
 import com.abel.model.vo.system.LoginVo;
 import com.abel.model.vo.system.UserInfoVo;
@@ -51,11 +52,8 @@ public class IndexController {
 
     @Logs(value = "获取用户信息", printParams = false)
     @GetMapping("/userinfo")
-    public Result<UserInfoVo> getUserInfo(@RequestHeader(name = "Authorization") @NonNull String authorization) {
-        // authorization = Bearer xxxxx
-        String token = authorization.substring(7);
-        UserInfoVo userInfo = sysUserService.getUserInfo(token);
-
+    public Result<UserInfoVo> getUserInfo() {
+        UserInfoVo userInfo = ContextUtil.getUser();
         return Result.success(userInfo);
     }
 
@@ -71,6 +69,14 @@ public class IndexController {
     public Result<Boolean> validateCaptcha(@RequestBody @NonNull CaptchaDto captchaDto) {
         boolean isValid = captchaService.validateCaptcha(captchaDto);
         return Result.success(isValid);
+    }
+
+    @Logs(value = "退出登录", printParams = false)
+    @PostMapping("/logout")
+    public Result<String> logout(@RequestHeader(name = "Authorization") @NonNull String authorization) {
+        String token = authorization.substring(7);
+        sysUserService.logout(token);
+        return Result.build("退出成功", ResultCodeEnum.SUCCESS);
     }
 
 }
