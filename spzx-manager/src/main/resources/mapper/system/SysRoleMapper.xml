@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.abel.manager.mapper.SysRoleMapper">
+
+    <resultMap type="com.abel.model.vo.system.SysRoleVo" id="sysRoleVoResultMap">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="role_name" jdbcType="VARCHAR" property="name"/>
+        <result column="role_code" jdbcType="VARCHAR" property="code"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <!-- 定义列 -->
+
+    <sql id="columns">
+        id,
+        role_name,
+        role_code,
+        description,
+        create_time,
+        update_time,
+        is_deleted
+    </sql>
+
+    <!-- findByPage -->
+
+    <select id="findByPage" parameterType="com.abel.model.dto.system.SysRoleDto" resultMap="sysRoleVoResultMap">
+        select
+        <include refid="columns"/>
+        from sys_role
+        <where>
+            <if test="name != null and name != ''">
+                and role_name like concat('%', #{name}, '%')
+            </if>
+            <if test="code != null and code != ''">
+                and role_code like concat('%', #{code}, '%')
+            </if>
+            and is_deleted = 0
+        </where>
+    </select>
+</mapper>
