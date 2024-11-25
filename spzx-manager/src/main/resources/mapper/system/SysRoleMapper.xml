@@ -28,7 +28,7 @@
 
     <!-- findByPage -->
 
-    <select id="findByPage" parameterType="com.abel.model.dto.system.SysRoleDto" resultMap="sysRoleVoResultMap">
+    <select id="findByPage" parameterType="com.abel.model.dto.system.role.RoleQueryDto" resultMap="sysRoleVoResultMap">
         select
         <include refid="columns"/>
         from sys_role
@@ -42,4 +42,34 @@
             and is_deleted = 0
         </where>
     </select>
+
+    <!-- checkNameExists -->
+
+    <select id="countByRoleName" parameterType="String" resultType="int">
+        select count(*) from sys_role where role_name = #{name} and is_deleted = 0
+    </select>
+
+    <!-- insertRole -->
+
+    <insert id="insertRole" parameterType="com.abel.model.dto.system.role.RoleCreateDto">
+        insert into sys_role (role_name, role_code, description) values (#{name}, #{code}, #{description})
+    </insert>
+
+    <!-- updateRole --> 
+
+    <update id="updateRole" parameterType="com.abel.model.dto.system.role.RoleUpdateDto">
+        update sys_role set role_name = #{name}, description = #{description} where id = #{id}
+    </update>
+
+    <!-- countById --> 
+
+    <select id="countById" parameterType="String" resultType="int">
+        select count(*) from sys_role where id = #{id} and is_deleted = 0
+    </select>
+
+    <!-- deleteRole --> 
+
+    <delete id="deleteRole" parameterType="String">
+        update sys_role set is_deleted = 1 where id = #{id}
+    </delete>
 </mapper>

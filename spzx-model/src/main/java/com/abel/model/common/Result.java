@@ -43,6 +43,14 @@ public class Result<T> {
 
     /**
      * @param <T> 泛型
+     * @return 成功结果
+     */
+    public static <T> Result<Void> success() {
+        return success(null, 20000, "success");
+    }
+
+    /**
+     * @param <T> 泛型
      * @param data 数据
      * @return 成功结果
      */

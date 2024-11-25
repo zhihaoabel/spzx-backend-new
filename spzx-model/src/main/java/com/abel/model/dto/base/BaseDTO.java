@@ -19,7 +19,7 @@ public class BaseDTO implements Serializable {
     private Integer current;
 
     @Min(value = 1, message = "每页条数不能小于1")
-    @Max(value = 100, message = "每页条数不能大于100")
+    @Max(value = 200, message = "每页条数不能大于200")
     private Integer pageSize;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
