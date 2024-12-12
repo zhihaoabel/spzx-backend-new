@@ -1,8 +1,11 @@
 package com.abel.manager.service;
 
+import com.abel.manager.page.PageVo;
 import com.abel.model.dto.system.LoginDto;
+import com.abel.model.dto.system.user.UserQueryDto;
 import com.abel.model.vo.system.LoginVo;
 import com.abel.model.vo.system.UserInfoVo;
+import com.abel.model.vo.system.UserVo;
 
 public interface SysUserService {
 
@@ -16,6 +19,8 @@ public interface SysUserService {
 
     UserInfoVo getUserInfo(String token);
 
-    public void logout(String token);
+    void logout(String token);
+
+    PageVo<UserVo> findByPage(UserQueryDto queryDto);
 
 }

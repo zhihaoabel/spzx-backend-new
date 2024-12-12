@@ -1,5 +1,6 @@
 package com.abel.manager.service.impl;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -10,14 +11,19 @@ import org.springframework.util.DigestUtils;
 
 import com.abel.common.util.AssertUtil;
 import com.abel.manager.mapper.SysUserMapper;
+import com.abel.manager.page.PageVo;
 import com.abel.manager.service.SysUserService;
 import com.abel.model.dto.system.CaptchaDto;
 import com.abel.model.dto.system.LoginDto;
+import com.abel.model.dto.system.user.UserQueryDto;
 import com.abel.model.entity.system.SysUser;
 import com.abel.model.vo.system.LoginVo;
 import com.abel.model.vo.system.UserInfoVo;
+import com.abel.model.vo.system.UserVo;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONWriter;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
@@ -76,6 +82,13 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public void logout(String token) {
         redisTemplate.delete("login:token:" + token);
+    }
+
+    @Override
+    public PageVo<UserVo> findByPage(UserQueryDto queryDto) {
+        PageHelper.startPage(queryDto.getCurrent(), queryDto.getPageSize());
+        List<UserVo> users = sysUserMapper.findByPage(queryDto);
+        return new PageVo<>(new PageInfo<>(users));
     }
 
 }

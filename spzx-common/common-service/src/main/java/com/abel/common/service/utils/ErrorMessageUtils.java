@@ -6,6 +6,7 @@ import java.io.StringWriter;
 import java.sql.SQLException;
 import java.util.Map;
 
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 public class ErrorMessageUtils {
@@ -16,7 +17,8 @@ public class ErrorMessageUtils {
         IllegalArgumentException.class, "参数不合法",
         IOException.class, "IO操作异常",
         SQLException.class, "数据库操作异常",
-        NoResourceFoundException.class, "资源不存在"
+        NoResourceFoundException.class, "资源不存在",
+        MethodArgumentNotValidException.class, "参数验证失败"
 
         // 可以添加更多映射
     );

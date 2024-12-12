@@ -1,13 +1,13 @@
 package com.abel.common.service.exception;
 
-
-import com.abel.common.service.utils.ErrorMessageUtils;
-import com.abel.model.common.Result;
-
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
+
+import com.abel.common.service.utils.ErrorMessageUtils;
+import com.abel.model.common.Result;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,6 +52,20 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoResourceFoundException.class)
     public Result<String> handleNoResourceFoundException(NoResourceFoundException e) {
         String errorMessage = ErrorMessageUtils.getFriendlyMessage(e);
+
+        return Result.fail(errorMessage);
+    }
+
+    /**
+     * MethodArgumentNotValidException
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Result<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        // 获取具体的验证错误信息
+        String errorMessage = e.getBindingResult().getFieldErrors().stream()
+                .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                .findFirst()
+                .orElse(e.getMessage());
 
         return Result.fail(errorMessage);
     }

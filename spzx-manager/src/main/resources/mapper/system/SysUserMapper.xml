@@ -4,6 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.abel.manager.mapper.SysUserMapper">
+
+    <resultMap type="com.abel.model.vo.system.UserVo" id="userVoResultMap">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="name" jdbcType="VARCHAR" property="realName"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createdAt"/>
+    </resultMap>
+
     <sql id="columns">
         id,
         username userName,
@@ -24,5 +36,31 @@
         from sys_user
         where username = #{username}
           and is_deleted = 0
+    </select>
+
+    <!-- findByPage -->
+
+    <select id="findByPage" parameterType="com.abel.model.dto.system.user.UserQueryDto" resultMap="userVoResultMap">
+        select
+        <include refid="columns"/>
+        from sys_user
+        <where>
+            <if test="username != null and username != ''">
+                and username like concat('%', #{username}, '%')
+            </if>
+            <if test="realName != null and realName != ''">
+                and name like concat('%', #{realName}, '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone like concat('%', #{phone}, '%')
+            </if>
+            <if test="createTimeBegin != null">
+                and create_time >= #{createTimeBegin}
+            </if>
+            <if test="createTimeEnd != null">
+                and create_time &lt;= #{createTimeEnd}
+            </if>
+            and is_deleted = 0
+        </where>
     </select>
 </mapper>
