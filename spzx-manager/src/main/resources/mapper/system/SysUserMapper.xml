@@ -45,20 +45,20 @@
         <include refid="columns"/>
         from sys_user
         <where>
-            <if test="username != null and username != ''">
-                and username like concat('%', #{username}, '%')
+            <if test="params.username != null and params.username != ''">
+                and username like concat('%', #{params.username}, '%')
             </if>
-            <if test="realName != null and realName != ''">
-                and name like concat('%', #{realName}, '%')
+            <if test="params.realName != null and params.realName != ''">
+                and name like concat('%', #{params.realName}, '%')
             </if>
-            <if test="phone != null and phone != ''">
-                and phone like concat('%', #{phone}, '%')
+            <if test="params.phone != null and params.phone != ''">
+                and phone like concat('%', #{params.phone}, '%')
             </if>
-            <if test="createTimeBegin != null">
-                and create_time >= #{createTimeBegin}
+            <if test="params.createTimeBegin != null">
+                and create_time >= #{params.createTimeBegin}
             </if>
-            <if test="createTimeEnd != null">
-                and create_time &lt;= #{createTimeEnd}
+            <if test="params.createTimeEnd != null">
+                and create_time &lt;= #{params.createTimeEnd}
             </if>
             and is_deleted = 0
         </where>

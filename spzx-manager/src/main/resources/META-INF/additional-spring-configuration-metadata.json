@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "custom.auth.exclude-urls",
+      "type": "java.util.List",
+      "description": "URLs to exclude from authentication."
+    }
+  ]
+} 

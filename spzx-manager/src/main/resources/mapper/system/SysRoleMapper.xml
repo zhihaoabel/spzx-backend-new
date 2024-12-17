@@ -33,11 +33,11 @@
         <include refid="columns"/>
         from sys_role
         <where>
-            <if test="name != null and name != ''">
-                and role_name like concat('%', #{name}, '%')
+            <if test="params.name != null and params.name != ''">
+                and role_name like concat('%', #{params.name}, '%')
             </if>
-            <if test="code != null and code != ''">
-                and role_code like concat('%', #{code}, '%')
+            <if test="params.code != null and params.code != ''">
+                and role_code like concat('%', #{params.code}, '%')
             </if>
             and is_deleted = 0
         </where>

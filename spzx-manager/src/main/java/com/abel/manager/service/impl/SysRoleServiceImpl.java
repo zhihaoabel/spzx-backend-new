@@ -5,14 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.abel.manager.mapper.SysRoleMapper;
+import com.abel.manager.page.PageVo;
 import com.abel.manager.service.SysRoleService;
 import com.abel.model.dto.system.role.RoleCreateDto;
 import com.abel.model.dto.system.role.RoleQueryDto;
 import com.abel.model.dto.system.role.RoleUpdateDto;
 import com.abel.model.vo.system.SysRoleVo;
-import com.abel.manager.page.PageVo;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 @Service
 public class SysRoleServiceImpl implements SysRoleService {
@@ -25,9 +24,9 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public PageVo<SysRoleVo> findByPage(RoleQueryDto params) {
-        PageHelper.startPage(params.getCurrent(), params.getPageSize());
-        List<SysRoleVo> roles = sysRoleMapper.findByPage(params);
-        return new PageVo<>(new PageInfo<>(roles));
+        Page<SysRoleVo> page = new Page<>(params.getCurrent(), params.getPageSize());
+        List<SysRoleVo> roles = sysRoleMapper.findByPage(page, params);
+        return new PageVo<>(page, roles);
     }
 
     @Override

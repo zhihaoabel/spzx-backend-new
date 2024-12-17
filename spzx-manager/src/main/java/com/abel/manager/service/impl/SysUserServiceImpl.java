@@ -22,8 +22,7 @@ import com.abel.model.vo.system.UserInfoVo;
 import com.abel.model.vo.system.UserVo;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONWriter;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
@@ -86,9 +85,12 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public PageVo<UserVo> findByPage(UserQueryDto queryDto) {
-        PageHelper.startPage(queryDto.getCurrent(), queryDto.getPageSize());
-        List<UserVo> users = sysUserMapper.findByPage(queryDto);
-        return new PageVo<>(new PageInfo<>(users));
+        // 创建Page对象
+        Page<UserVo> page = new Page<>(queryDto.getCurrent(), queryDto.getPageSize());
+        // 执行分页查询
+        List<UserVo> users = sysUserMapper.findByPage(page, queryDto);
+        // 返回PageVo对象
+        return new PageVo<>(page, users);
     }
 
 }

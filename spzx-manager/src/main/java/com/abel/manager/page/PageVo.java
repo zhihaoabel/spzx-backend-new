@@ -4,7 +4,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import lombok.Data;
 
@@ -22,13 +22,14 @@ public class PageVo<T> implements Serializable {
     private Integer pageSize;     // 每页记录数
     private Integer pages;        // 总页数
 
-    public PageVo(PageInfo<T> pageInfo) {
-        this.records = pageInfo.getList();
-        this.total = pageInfo.getTotal();
-        this.prev = pageInfo.getPrePage();
-        this.current = pageInfo.getPageNum();
-        this.next = pageInfo.getNextPage();
-        this.pageSize = pageInfo.getPageSize();
-        this.pages = pageInfo.getPages();
+
+    public <E> PageVo(Page<E> page, List<T> records) {
+        this.records = records;
+        this.total = page.getTotal();
+        this.current = (int)page.getCurrent();
+        this.pageSize = (int)page.getSize();
+        this.pages = (int)page.getPages();
+        this.prev = this.current > 1 ? this.current - 1 : 1;
+        this.next = this.current < this.pages ? this.current + 1 : this.pages;
     }
 }
